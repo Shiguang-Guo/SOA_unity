@@ -1,35 +1,57 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices;
 
 public class QuizGameUI : MonoBehaviour
 {
 #pragma warning disable 649
-    [SerializeField] private QuizManager quizManager;               //ref to the QuizManager script
+    [SerializeField] private QuizManager quizManager; //ref to the QuizManager script
     [SerializeField] private CategoryBtnScript categoryBtnPrefab;
-    [SerializeField] private GameObject scrollHolder;
+    [SerializeField] private GameModeBtnScript modeBtnPrefab;
+    [SerializeField] private GameObject scrollHolder, modelcontent;
     [SerializeField] private Text scoreText, timerText;
     [SerializeField] private List<Image> lifeImageList;
-    [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel;
+    [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect;
     [SerializeField] private Color correctCol, wrongCol, normalCol; //color of buttons
-    [SerializeField] private Image questionImg;                     //image component to show image
-    [SerializeField] private UnityEngine.Video.VideoPlayer questionVideo;   //to show video
-    [SerializeField] private AudioSource questionAudio;             //audio source for audio clip
-    [SerializeField] private Text questionInfoText;                 //text to show question
-    [SerializeField] private List<Button> options;                  //options button reference
+    [SerializeField] private Image questionImg; //image component to show image
+    [SerializeField] private UnityEngine.Video.VideoPlayer questionVideo; //to show video
+    [SerializeField] private AudioSource questionAudio; //audio source for audio clip
+    [SerializeField] private Text questionInfoText; //text to show question
+    [SerializeField] private List<Button> options; //options button reference
 #pragma warning restore 649
 
-    private float audioLength;          //store audio length
-    private Question question;          //store current question data
-    private bool answered = false;      //bool to keep track if answered or not
+    private float audioLength; //store audio length
+    private Question question; //store current question data
+    private bool answered = false; //bool to keep track if answered or not
 
-    public Text TimerText { get => timerText; }                     //getter
-    public Text ScoreText { get => scoreText; }                     //getter
-    public GameObject GameOverPanel { get => gameOverPanel; }                     //getter
+    public Text TimerText => timerText; //getter
+    public Text ScoreText => scoreText; //getter
+    public GameObject GameOverPanel => gameOverPanel; //getter
 
+
+    [DllImport("__Internal")]
+    private static extern void NotImplenmation();
+    
     private void Start()
+    {
+        CreateGameModeBtns();
+    }
+
+    private void CreateGameModeBtns()
+    {
+        foreach (var mode in quizManager.ModeData)
+        {
+            GameModeBtnScript modeBtn = Instantiate(modeBtnPrefab, modelcontent.transform);
+            modeBtn.SetButton(mode.modeName);
+            modeBtn.Btn.onClick.AddListener(() => GameModeBtn(mode.modeName, mode.isopen));
+        }
+    }
+
+    private void StartLocalGame()
     {
         //add the listner to all the buttons
         for (int i = 0; i < options.Count; i++)
@@ -39,8 +61,8 @@ public class QuizGameUI : MonoBehaviour
         }
 
         CreateCategoryButtons();
-
     }
+
     /// <summary>
     /// Method which populate the question on the screen
     /// </summary>
@@ -53,37 +75,37 @@ public class QuizGameUI : MonoBehaviour
         switch (question.questionType)
         {
             case QuestionType.TEXT:
-                questionImg.transform.parent.gameObject.SetActive(false);   //deactivate image holder
+                questionImg.transform.parent.gameObject.SetActive(false); //deactivate image holder
                 break;
             case QuestionType.IMAGE:
-                questionImg.transform.parent.gameObject.SetActive(true);    //activate image holder
-                questionVideo.transform.gameObject.SetActive(false);        //deactivate questionVideo
-                questionImg.transform.gameObject.SetActive(true);           //activate questionImg
-                questionAudio.transform.gameObject.SetActive(false);        //deactivate questionAudio
+                questionImg.transform.parent.gameObject.SetActive(true); //activate image holder
+                questionVideo.transform.gameObject.SetActive(false); //deactivate questionVideo
+                questionImg.transform.gameObject.SetActive(true); //activate questionImg
+                questionAudio.transform.gameObject.SetActive(false); //deactivate questionAudio
 
-                questionImg.sprite = question.questionImage;                //set the image sprite
+                questionImg.sprite = question.questionImage; //set the image sprite
                 break;
             case QuestionType.AUDIO:
-                questionVideo.transform.parent.gameObject.SetActive(true);  //activate image holder
-                questionVideo.transform.gameObject.SetActive(false);        //deactivate questionVideo
-                questionImg.transform.gameObject.SetActive(false);          //deactivate questionImg
-                questionAudio.transform.gameObject.SetActive(true);         //activate questionAudio
-                
-                audioLength = question.audioClip.length;                    //set audio clip
-                StartCoroutine(PlayAudio());                                //start Coroutine
+                questionVideo.transform.parent.gameObject.SetActive(true); //activate image holder
+                questionVideo.transform.gameObject.SetActive(false); //deactivate questionVideo
+                questionImg.transform.gameObject.SetActive(false); //deactivate questionImg
+                questionAudio.transform.gameObject.SetActive(true); //activate questionAudio
+
+                audioLength = question.audioClip.length; //set audio clip
+                StartCoroutine(PlayAudio()); //start Coroutine
                 break;
             case QuestionType.VIDEO:
-                questionVideo.transform.parent.gameObject.SetActive(true);  //activate image holder
-                questionVideo.transform.gameObject.SetActive(true);         //activate questionVideo
-                questionImg.transform.gameObject.SetActive(false);          //deactivate questionImg
-                questionAudio.transform.gameObject.SetActive(false);        //deactivate questionAudio
+                questionVideo.transform.parent.gameObject.SetActive(true); //activate image holder
+                questionVideo.transform.gameObject.SetActive(true); //activate questionVideo
+                questionImg.transform.gameObject.SetActive(false); //deactivate questionImg
+                questionAudio.transform.gameObject.SetActive(false); //deactivate questionAudio
 
-                questionVideo.clip = question.videoClip;                    //set video clip
-                questionVideo.Play();                                       //play video
+                questionVideo.clip = question.videoClip; //set video clip
+                questionVideo.Play(); //play video
                 break;
         }
 
-        questionInfoText.text = question.questionInfo;                      //set the question text
+        questionInfoText.text = question.questionInfo; //set the question text
 
         //suffle the list of options
         List<string> ansOptions = ShuffleList.ShuffleListItems<string>(question.options);
@@ -93,12 +115,11 @@ public class QuizGameUI : MonoBehaviour
         {
             //set the child text
             options[i].GetComponentInChildren<Text>().text = ansOptions[i];
-            options[i].name = ansOptions[i];    //set the name of button
+            options[i].name = ansOptions[i]; //set the name of button
             options[i].image.color = normalCol; //set color of button to normal
         }
 
-        answered = false;                       
-
+        answered = false;
     }
 
     public void ReduceLife(int remainingLife)
@@ -181,12 +202,27 @@ public class QuizGameUI : MonoBehaviour
         }
     }
 
+    private void GameModeBtn(string modename, bool status)
+    {
+        if (status == false)
+        {
+            NotImplenmation();
+            return;
+        }
+        if (modename == "Local")
+        {
+            StartLocalGame();
+            modelSelect.SetActive(false);
+            mainMenu.SetActive(true);
+        }
+    }
+
     //Method called by Category Button
     private void CategoryBtn(int index, string category)
     {
         quizManager.StartGame(index, category); //start the game
-        mainMenu.SetActive(false);              //deactivate mainMenu
-        gamePanel.SetActive(true);              //activate game panel
+        mainMenu.SetActive(false); //deactivate mainMenu
+        gamePanel.SetActive(true); //activate game panel
     }
 
     //this give blink effect [if needed use or dont use]
@@ -205,5 +241,4 @@ public class QuizGameUI : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 }

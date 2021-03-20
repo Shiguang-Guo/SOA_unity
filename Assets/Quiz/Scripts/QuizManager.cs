@@ -8,15 +8,20 @@ public class QuizManager : MonoBehaviour
 #pragma warning disable 649
     //ref to the QuizGameUI script
     [SerializeField] private QuizGameUI quizGameUI;
+
     //ref to the scriptableobject file
     [SerializeField] private List<QuizDataScriptable> quizDataList;
+    [SerializeField] private List<GameMode> modeDataList;
     [SerializeField] private float timeInSeconds;
 #pragma warning restore 649
 
     private string currentCategory = "";
+
     private int correctAnswerCount = 0;
+
     //questions data
     private List<Question> questions;
+
     //current question data
     private Question selectedQuetion = new Question();
     private int gameScore;
@@ -26,9 +31,11 @@ public class QuizManager : MonoBehaviour
 
     private GameStatus gameStatus = GameStatus.NEXT;
 
-    public GameStatus GameStatus { get { return gameStatus; } }
+    public GameStatus GameStatus => gameStatus;
 
-    public List<QuizDataScriptable> QuizData { get => quizDataList; }
+    public List<QuizDataScriptable> QuizData => quizDataList;
+
+    public List<GameMode> ModeData => modeDataList;
 
     public void StartGame(int categoryIndex, string category)
     {
@@ -72,8 +79,8 @@ public class QuizManager : MonoBehaviour
 
     void SetTime(float value)
     {
-        TimeSpan time = TimeSpan.FromSeconds(currentTime);                       //set the time value
-        quizGameUI.TimerText.text = time.ToString("mm':'ss");   //convert time to Time format
+        TimeSpan time = TimeSpan.FromSeconds(currentTime); //set the time value
+        quizGameUI.TimerText.text = time.ToString("mm':'ss"); //convert time to Time format
 
         if (currentTime <= 0)
         {
@@ -125,6 +132,7 @@ public class QuizManager : MonoBehaviour
                 GameEnd();
             }
         }
+
         //return the value of correct bool
         return correct;
     }
@@ -146,13 +154,13 @@ public class QuizManager : MonoBehaviour
 [System.Serializable]
 public class Question
 {
-    public string questionInfo;         //question text
-    public QuestionType questionType;   //type
-    public Sprite questionImage;        //image for Image Type
-    public AudioClip audioClip;         //audio for audio type
-    public UnityEngine.Video.VideoClip videoClip;   //video for video type
-    public List<string> options;        //options to select
-    public string correctAns;           //correct option
+    public string questionInfo; //question text
+    public QuestionType questionType; //type
+    public Sprite questionImage; //image for Image Type
+    public AudioClip audioClip; //audio for audio type
+    public UnityEngine.Video.VideoClip videoClip; //video for video type
+    public List<string> options; //options to select
+    public string correctAns; //correct option
 }
 
 [System.Serializable]

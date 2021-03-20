@@ -10,7 +10,7 @@ public class CategoryBtnScript : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Button btn;
 
-    public Button Btn { get => btn; }
+    public Button Btn => btn;
 
     public void SetButton(string title, int totalQuestion)
     {
