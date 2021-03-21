@@ -8,3 +8,4 @@ public class QuizDataScriptable : ScriptableObject
     public string categoryName;
     public List<Question> questions;
 }
+// 一个种类的问题集合

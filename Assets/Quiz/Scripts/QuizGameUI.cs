@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Runtime.InteropServices;
 
-public class QuizGameUI : MonoBehaviour
+public class QuizGameUI : MonoBehaviour // 主界面
 {
 #pragma warning disable 649
     [SerializeField] private QuizManager quizManager; //ref to the QuizManager script
@@ -209,7 +209,7 @@ public class QuizGameUI : MonoBehaviour
             NotImplenmation();
             return;
         }
-        if (modename == "Local")
+        if (modename == "Local") // 如果选择本地模式，开始游戏
         {
             StartLocalGame();
             modelSelect.SetActive(false);
