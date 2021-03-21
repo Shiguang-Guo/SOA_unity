@@ -12,60 +12,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f611d797432e3f846885b2b12fde5f35, type: 3}
   m_Name: AnimalData
   m_EditorClassIdentifier: 
-  categoryName: Animal
+  categoryName: Place of Birth
   questions:
-  - questionInfo: Which animal eats Deer?
+  - questionInfo: Khatchig Mouradian is a journalist, writer and translator. Where
+      were he born?
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
     videoClip: {fileID: 0}
     options:
-    - Lion
-    - Elephant
-    - Goat
-    - Monkey
-    correctAns: Lion
-  - questionInfo: Which animal can climb trees?
+    - Mongolia
+    - USA
+    - Iran
+    - Lebanon
+    correctAns: Lebanon
+  - questionInfo: Georgina Willis is an award winning film director. Where were he
+      born?
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
     videoClip: {fileID: 0}
     options:
-    - Zebra
-    - Bear
-    - Hyna
-    - Monkey
-    correctAns: Monkey
-  - questionInfo: Which of the following animal is Herbivorous?
+    - Australia
+    - U.K.
+    - New Zealand
+    - Germany
+    correctAns: Australia
+  - questionInfo: Eduard Ender, a painter born in 1882. Where is his birthplace?
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
     videoClip: {fileID: 0}
     options:
-    - Crocodile
-    - Moose
-    - Bear
-    - Panther
-    correctAns: Moose
-  - questionInfo: Who can walk on 2 legs?
+    - Australia
+    - Austria
+    - Italy
+    - France
+    correctAns: Austria
+  - questionInfo: "Na\xEFma Azough, a politician for Greenleft. Where were he born? "
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
     videoClip: {fileID: 0}
     options:
-    - Dog
-    - Cat
-    - Human
-    - Turtle
-    correctAns: Human
-  - questionInfo: Slowest animal on the earth?
+    - Germany
+    - Spain
+    - Morocco
+    - Tanzania
+    correctAns: Morocco
+  - questionInfo: Father Hubert Schiffer, one of eight Jesuits who survived the bomb
+      dropped on Hiroshima, where is his birthplace?
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
     videoClip: {fileID: 0}
     options:
-    - Cheeta
-    - Sloth
-    - Leapord
-    - Tortois
-    correctAns: Sloth
+    - France
+    - Italy
+    - Spain
+    - Germany
+    correctAns: Germany

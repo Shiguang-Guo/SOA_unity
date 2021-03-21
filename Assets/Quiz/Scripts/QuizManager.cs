@@ -10,14 +10,14 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private QuizGameUI quizGameUI;
 
     //ref to the scriptableobject file
-    [SerializeField] private List<QuizDataScriptable> quizDataList;
-    [SerializeField] private List<GameMode> modeDataList;
-    [SerializeField] private float timeInSeconds;
+    [SerializeField] private List<QuizDataScriptable> quizDataList; // 各种类型问题的集合的一个list
+    [SerializeField] private List<GameMode> modeDataList; // 游戏模式的list
+    [SerializeField] private float timeInSeconds; // 剩余时间
 #pragma warning restore 649
 
     private string currentCategory = "";
 
-    private int correctAnswerCount = 0;
+    private int correctAnswerCount = 0; // 正确答案数量
 
     //questions data
     private List<Question> questions;
@@ -36,21 +36,23 @@ public class QuizManager : MonoBehaviour
     public List<QuizDataScriptable> QuizData => quizDataList;
 
     public List<GameMode> ModeData => modeDataList;
+    
+    // 相当于给private变量设置了修改接口
 
     public void StartGame(int categoryIndex, string category)
     {
-        currentCategory = category;
+        currentCategory = category; // 设置游戏类型
         correctAnswerCount = 0;
         gameScore = 0;
-        lifesRemaining = 3;
+        lifesRemaining = 3; // 初始化游戏信息
         currentTime = timeInSeconds;
         //set the questions data
         questions = new List<Question>();
         dataScriptable = quizDataList[categoryIndex];
-        questions.AddRange(dataScriptable.questions);
+        questions.AddRange(dataScriptable.questions); // 看起来像是一个从库函数里面抽取一个列表的函数
         //select the question
         SelectQuestion();
-        gameStatus = GameStatus.PLAYING;
+        gameStatus = GameStatus.PLAYING; // 修改游戏状态
     }
 
     /// <summary>
@@ -68,7 +70,7 @@ public class QuizManager : MonoBehaviour
         questions.RemoveAt(val);
     }
 
-    private void Update()
+    private void Update() // 看起来像是一个会被定期调用的函数，用来更新游戏时间
     {
         if (gameStatus == GameStatus.PLAYING)
         {
@@ -77,7 +79,7 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    void SetTime(float value)
+    void SetTime(float value) // 结合Update函数进行游戏进度的监控
     {
         TimeSpan time = TimeSpan.FromSeconds(currentTime); //set the time value
         quizGameUI.TimerText.text = time.ToString("mm':'ss"); //convert time to Time format
@@ -112,7 +114,7 @@ public class QuizManager : MonoBehaviour
             //No, Ans is wrong
             //Reduce Life
             lifesRemaining--;
-            quizGameUI.ReduceLife(lifesRemaining);
+            quizGameUI.ReduceLife(lifesRemaining); // 扣生命值
 
             if (lifesRemaining == 0)
             {
@@ -120,7 +122,7 @@ public class QuizManager : MonoBehaviour
             }
         }
 
-        if (gameStatus == GameStatus.PLAYING)
+        if (gameStatus == GameStatus.PLAYING) // 某一题回答结束 生命没有用完 则加载下一题
         {
             if (questions.Count > 0)
             {
@@ -134,7 +136,7 @@ public class QuizManager : MonoBehaviour
         }
 
         //return the value of correct bool
-        return correct;
+        return correct; 
     }
 
     private void GameEnd()
@@ -150,7 +152,7 @@ public class QuizManager : MonoBehaviour
     }
 }
 
-//Datastructure for storeing the quetions data
+//Data structure for storing the questions data
 [System.Serializable]
 public class Question
 {

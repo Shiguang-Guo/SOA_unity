@@ -12,60 +12,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f611d797432e3f846885b2b12fde5f35, type: 3}
   m_Name: BirdData
   m_EditorClassIdentifier: 
-  categoryName: Bird
+  categoryName: Date of birth
   questions:
-  - questionInfo: What is the fastest bird on two legs?
+  - questionInfo: Peter F Martin is an American politician who is a Democratic member
+      of the Rhode Island House of Representatives. When were he born?
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
     videoClip: {fileID: 0}
     options:
-    - Chicken
-    - Ostrich
-    - Kiwi
-    - Crow
-    correctAns: Ostrich
-  - questionInfo: What is New Zealand's national bird?
+    - 1841
+    - 1941
+    - 1858
+    - 1958
+    correctAns: 1941
+  - questionInfo: Maria Pilar Romero is a team handball player from Argentina. When
+      were she born?
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
     videoClip: {fileID: 0}
     options:
-    - Kiwi
-    - Penguins
-    - Bat
-    - Duck
-    correctAns: Kiwi
-  - questionInfo: Which bird can't walk on legs?
+    - 1982
+    - 1984
+    - 1986
+    - 1988
+    correctAns: 1982
+  - questionInfo: Federico Falco is an Argentinian writer. When were he born?
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
     videoClip: {fileID: 0}
     options:
-    - Capon
-    - Ravens
-    - Hummingbird
-    - Bluebird
-    correctAns: Hummingbird
-  - questionInfo: Which bird cannot fly?
+    - 1875
+    - 1975
+    - 1877
+    - 1977
+    correctAns: 1977
+  - questionInfo: Tan Jiexi, is a Chinese singer-songwriter debuted in 2010 after
+      wining the fourth place at the 2010 Happy Boy singing competition. When were
+      he born?
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
     videoClip: {fileID: 0}
     options:
-    - Chicken
-    - Crow
-    - Sparrow
-    - Owl
-    correctAns: Chicken
-  - questionInfo: Emperor, Rock Hopper and jackass are all types of what?
+    - 1980
+    - 1984
+    - 1988
+    - 1992
+    correctAns: 1988
+  - questionInfo: David Carrier is an American philosopher and art and culture critic.
+      When were he born?
     questionType: 0
     questionImage: {fileID: 0}
     audioClip: {fileID: 0}
     videoClip: {fileID: 0}
     options:
-    - Dodo
-    - Penguins
-    - Albatross
-    - Crow
-    correctAns: Penguins
+    - 1844
+    - 1944
+    - 1850
+    - 1950
+    correctAns: 1944
