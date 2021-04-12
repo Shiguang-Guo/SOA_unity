@@ -36,7 +36,7 @@ public class QuizManager : MonoBehaviour
     public List<QuizDataScriptable> QuizData => quizDataList;
 
     public List<GameMode> ModeData => modeDataList;
-    
+
     // 相当于给private变量设置了修改接口
 
     public void StartGame(int categoryIndex, string category)
@@ -53,6 +53,7 @@ public class QuizManager : MonoBehaviour
         //select the question
         SelectQuestion();
         gameStatus = GameStatus.PLAYING; // 修改游戏状态
+        quizGameUI.ScoreText.text = "Score:" + gameScore;
     }
 
     /// <summary>
@@ -135,8 +136,9 @@ public class QuizManager : MonoBehaviour
             }
         }
 
+        currentTime = timeInSeconds;
         //return the value of correct bool
-        return correct; 
+        return correct;
     }
 
     private void GameEnd()

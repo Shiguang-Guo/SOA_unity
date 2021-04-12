@@ -15,7 +15,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [SerializeField] private GameObject scrollHolder, modelcontent;
     [SerializeField] private Text scoreText, timerText;
     [SerializeField] private List<Image> lifeImageList;
-    [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect;
+    [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect, knowledgebase;
     [SerializeField] private Color correctCol, wrongCol, normalCol; //color of buttons
     [SerializeField] private Image questionImg; //image component to show image
     [SerializeField] private UnityEngine.Video.VideoPlayer questionVideo; //to show video
@@ -35,7 +35,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
 
     [DllImport("__Internal")]
     private static extern void NotImplenmation();
-    
+
     private void Start()
     {
         CreateGameModeBtns();
@@ -209,11 +209,17 @@ public class QuizGameUI : MonoBehaviour // 主界面
             NotImplenmation();
             return;
         }
+
         if (modename == "Local") // 如果选择本地模式，开始游戏
         {
             StartLocalGame();
             modelSelect.SetActive(false);
             mainMenu.SetActive(true);
+        }
+        else if (modename == "Knowledge Base")
+        {
+            modelSelect.SetActive(false);
+            knowledgebase.SetActive(true);
         }
     }
 
