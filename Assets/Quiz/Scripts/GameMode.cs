@@ -6,5 +6,6 @@ using UnityEngine;
 public class GameMode : ScriptableObject
 {
     public string modeName;
+    public string modeChineseName;
     public bool isopen;
 }

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: OnlineMOde
   m_EditorClassIdentifier: 
   modeName: Online
+  modeChineseName: "\u8054\u673A\u5BF9\u6218"
   isopen: 0

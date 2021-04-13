@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: LocalMode
   m_EditorClassIdentifier: 
   modeName: Local
+  modeChineseName: "\u5355\u4EBA\u6E38\u620F"
   isopen: 1

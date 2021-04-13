@@ -47,7 +47,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
         foreach (var mode in quizManager.ModeData)
         {
             GameModeBtnScript modeBtn = Instantiate(modeBtnPrefab, modelcontent.transform);
-            modeBtn.SetButton(mode.modeName);
+            modeBtn.SetButton(mode.modeChineseName);
             modeBtn.Btn.onClick.AddListener(() => GameModeBtn(mode.modeName, mode.isopen));
         }
     }
@@ -196,7 +196,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
             //Create new CategoryBtn
             CategoryBtnScript categoryBtn = Instantiate(categoryBtnPrefab, scrollHolder.transform);
             //Set the button default values
-            categoryBtn.SetButton(quizManager.QuizData[i].categoryName, quizManager.QuizData[i].questions.Count);
+            categoryBtn.SetButton(quizManager.QuizData[i].categoryChineseName, quizManager.QuizData[i].questions.Count);
             int index = i;
             //Add listner to button which calls CategoryBtn method
             categoryBtn.Btn.onClick.AddListener(() => CategoryBtn(index, quizManager.QuizData[index].categoryName));

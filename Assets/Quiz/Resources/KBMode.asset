@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: KBMode
   m_EditorClassIdentifier: 
   modeName: Knowledge Base
+  modeChineseName: "\u77E5\u8BC6\u5E93\u67E5\u8BE2"
   isopen: 1
