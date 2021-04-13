@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f611d797432e3f846885b2b12fde5f35, type: 3}
+  m_Name: GeographyData
+  m_EditorClassIdentifier: 
+  categoryName: Geography
+  categoryChineseName: "\u5730\u7406"
+  questions:
+  - questionInfo: "Irish Free State \u4F4D\u4E8E\u54EA\u4E2A\u5927\u6D32\uFF1F"
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - "\u4E9A\u6D32"
+    - "\u975E\u6D32"
+    - "\u5927\u6D0B\u6D32"
+    - "\u5357\u7F8E\u6D32"
+    correctAns: "\u6B27\u6D32"
+  - questionInfo: "\u57C3\u6587\u65AF\u89D2\uFF08Cape Evans\uFF09 \u4F4D\u4E8E\u54EA\u4E2A\u5927\u6D32\uFF1F"
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - "\u5927\u6D0B\u6D32"
+    - "\u975E\u6D32"
+    - "\u5317\u7F8E\u6D32"
+    - "\u5357\u6781\u6D32"
+    correctAns: "\u5357\u6781\u6D32"
+  - questionInfo: "\u683C\u5FB7\u683C\uFF08Gadge\uFF09\u4F4D\u4E8E\u54EA\u4E2A\u5927\u6D32\uFF1F"
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - "\u4E9A\u6D32"
+    - "\u975E\u6D32"
+    - "\u6B27\u6D32"
+    - "\u5357\u7F8E\u6D32"
+    correctAns: "\u4E9A\u6D32"
+  - questionInfo: "\u63D0\u8428\u6CB3\uFF08Tisza\uFF09\u4F4D\u4E8E\u54EA\u4E2A\u5927\u6D32\uFF1F"
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - "\u4E9A\u6D32"
+    - "\u5317\u7F8E\u6D32"
+    - "\u5357\u7F8E\u6D32"
+    - "\u6B27\u6D32"
+    correctAns: "\u6B27\u6D32"
+  - questionInfo: "\u6885\u5229\u91CC\u4E9A\uFF08Mellilia\uFF09\u4F4D\u4E8E\u54EA\u4E2A\u5927\u6D32\uFF1F"
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - "\u5357\u7F8E\u6D32"
+    - "\u975E\u6D32"
+    - "\u4E9A\u6D32"
+    - "\u5357\u6781\u6D32"
+    correctAns: "\u975E\u6D32"

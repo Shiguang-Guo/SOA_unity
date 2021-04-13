@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f611d797432e3f846885b2b12fde5f35, type: 3}
-  m_Name: BirthDate
+  m_Name: TimeofbirthData
   m_EditorClassIdentifier: 
-  categoryName: Date of birth
-  categoryChineseName: "\u51FA\u751F\u65E5\u671F"
+  categoryName: Time Of Birth
+  categoryChineseName: "\u51FA\u751F\u5E74\u4EFD"
   questions:
   - questionInfo: Peter F Martin is an American politician who is a Democratic member
       of the Rhode Island House of Representatives. When were he born?

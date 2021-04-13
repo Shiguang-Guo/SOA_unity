@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f611d797432e3f846885b2b12fde5f35, type: 3}
+  m_Name: CapitalData
+  m_EditorClassIdentifier: 
+  categoryName: Capital
+  categoryChineseName: "\u9996\u90FD"
+  questions:
+  - questionInfo: "\u963F\u5BCC\u6C57\u7684\u9996\u90FD\u662F"
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - "\u5E03\u5B9C\u8BFA\u65AF\u827E\u5229\u65AF"
+    - "\u5580\u5E03\u5C14"
+    - "\u52AA\u5C14\u82CF\u4E39"
+    - "\u675C\u5C1A\u522B"
+    correctAns: "\u5580\u5E03\u5C14"
+  - questionInfo: "\u632A\u5A01\u7684\u9996\u90FD\u662F"
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - Oslau
+    - Oslu
+    - Oslo
+    - Osllo
+    correctAns: Oslo
+  - questionInfo: "\u91CC\u52A0(Riga)\u662F\u90A3\u4E2A\u56FD\u5BB6\u7684\u9996\u90FD\uFF1F"
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - "\u4FDD\u52A0\u5229\u4E9A"
+    - "\u5C3C\u65E5\u5229\u4E9A"
+    - "\u62C9\u8131\u7EF4\u4E9A"
+    - "\u7259\u4E70\u52A0"
+    correctAns: "\u62C9\u8131\u7EF4\u4E9A"
+  - questionInfo: "\u8D6B\u5C14\u8F9B\u57FA\u662F\u54EA\u4E2A\u56FD\u5BB6\u7684\u9996\u90FD\uFF1F"
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - "\u82AC\u5170"
+    - "\u6CE2\u5170"
+    - "\u8D6B\u5C14\u8F9B\u57FA"
+    - "\u6CE2\u9ED1"
+    correctAns: "\u82AC\u5170"
+  - questionInfo: "\u96C5\u52A0\u8FBE\u662F\u54EA\u4E2A\u56FD\u5BB6\u7684\u9996\u90FD"
+    questionType: 0
+    questionImage: {fileID: 0}
+    audioClip: {fileID: 0}
+    videoClip: {fileID: 0}
+    options:
+    - "\u83F2\u5F8B\u5BBE"
+    - "\u5B5F\u52A0\u62C9\u56FD"
+    - "\u5370\u5EA6\u5C3C\u897F\u4E9A"
+    - "\u9A6C\u6765\u897F\u4E9A"
+    correctAns: "\u5370\u5EA6\u5C3C\u897F\u4E9A"

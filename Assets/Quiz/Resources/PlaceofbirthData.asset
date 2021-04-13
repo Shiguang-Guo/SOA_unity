@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f611d797432e3f846885b2b12fde5f35, type: 3}
-  m_Name: BirthPlace
+  m_Name: PlaceofbirthData
   m_EditorClassIdentifier: 
-  categoryName: Place of Birth
+  categoryName: Place Of Birth
   categoryChineseName: "\u51FA\u751F\u5730"
   questions:
   - questionInfo: Khatchig Mouradian is a journalist, writer and translator. Where

@@ -5865,6 +5865,8 @@ MonoBehaviour:
   quizDataList:
   - {fileID: 11400000, guid: df6004af69d23cd48a8e77bc6730af97, type: 2}
   - {fileID: 11400000, guid: 63be080cea79d3b478d96bfb0b7287a0, type: 2}
+  - {fileID: 11400000, guid: 124f73b7b3cbc9446939e54801554984, type: 2}
+  - {fileID: 11400000, guid: 59c34d770a811f149950e84c23cb2269, type: 2}
   modeDataList:
   - {fileID: 11400000, guid: 0868773e89d7e894e96572715b6176e2, type: 2}
   - {fileID: 11400000, guid: c9468827812be294a91730aa68490141, type: 2}
