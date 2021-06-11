@@ -16,7 +16,8 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [SerializeField] private Text scoreText, timerText;
     [SerializeField] private List<Image> lifeImageList;
     [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect, knowledgebase;
-    [SerializeField] private Button retbtn;
+    [SerializeField] private Button retbtn, searchbtn;
+    [SerializeField] private Text ansText;
     [SerializeField] private Color correctCol, wrongCol, normalCol; //color of buttons
     [SerializeField] private Image questionImg; //image component to show image
     [SerializeField] private UnityEngine.Video.VideoPlayer questionVideo; //to show video
@@ -36,6 +37,10 @@ public class QuizGameUI : MonoBehaviour // 主界面
 
     [DllImport("__Internal")]
     private static extern void NotImplenmation();
+
+    [DllImport("__Internal")]
+    private static extern string getRequest();
+
 
     private void Start()
     {
@@ -222,7 +227,14 @@ public class QuizGameUI : MonoBehaviour // 主界面
             modelSelect.SetActive(false);
             knowledgebase.SetActive(true);
             retbtn.onClick.AddListener(() => Ret2main());
+            searchbtn.onClick.AddListener((() => Search()));
         }
+    }
+
+    public void Search()
+    {
+        string ans = getRequest();
+        ansText.text = ans;
     }
 
     public void Ret2main()
