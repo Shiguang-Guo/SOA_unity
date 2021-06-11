@@ -4,15 +4,17 @@
         window.alert("此功能正在开发中！");
     },
 
-    getRequest: function () {
-        let result;
+    getRequest: function (ques, model) {
+        ques_ = Pointer_stringify(ques)
+        model_ = Pointer_stringify(model)
+        var result;
         $.ajax({
             type: "POST",
             url: "http://166.111.7.106:17394/predict",
             async: false,
             data: JSON.stringify({
-                "model": "bert",
-                "question": "The theory of relativity was developed by [MASK] .",
+                "model": model_,
+                "question": ques_,
             }),
             dataType: "json",
             contentType: 'application/json;charset=gb2312;'
@@ -22,9 +24,9 @@
         }).error(function (xhr, status) {
             console.log(xhr, status);
         });
-        let returnStr = result;
-        let bufferSize = lengthBytesUTF8(returnStr) + 1;
-        let buffer = _malloc(bufferSize);
+        var returnStr = result;
+        var bufferSize = lengthBytesUTF8(returnStr) + 1;
+        var buffer = _malloc(bufferSize);
         stringToUTF8(returnStr, buffer, bufferSize);
         return buffer;
     }

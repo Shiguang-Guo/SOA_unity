@@ -24,6 +24,9 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [SerializeField] private AudioSource questionAudio; //audio source for audio clip
     [SerializeField] private Text questionInfoText; //text to show question
     [SerializeField] private List<Button> options; //options button reference
+    [SerializeField] private InputField user_question;
+    [SerializeField] private Dropdown lang_model;
+
 #pragma warning restore 649
 
     private float audioLength; //store audio length
@@ -39,7 +42,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
     private static extern void NotImplenmation();
 
     [DllImport("__Internal")]
-    private static extern string getRequest();
+    private static extern string getRequest(string ques, string model);
 
 
     private void Start()
@@ -233,7 +236,14 @@ public class QuizGameUI : MonoBehaviour // 主界面
 
     public void Search()
     {
-        string ans = getRequest();
+        Debug.Log(user_question.text);
+        Debug.Log(lang_model.options);
+        Debug.Log(lang_model.value);
+        string ques = user_question.text;
+        string model = lang_model.options[lang_model.value].text;
+        Debug.Log(ques);
+        Debug.Log(model);
+        string ans = getRequest(ques, model);
         ansText.text = ans;
     }
 
