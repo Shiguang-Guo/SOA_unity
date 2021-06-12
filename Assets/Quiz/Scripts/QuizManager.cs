@@ -12,6 +12,7 @@ public class QuizManager : MonoBehaviour
     //ref to the scriptableobject file
     [SerializeField] private List<QuizDataScriptable> quizDataList; // 各种类型问题的集合的一个list
     [SerializeField] private List<GameMode> modeDataList; // 游戏模式的list
+    // [SerializeField] private List<LeaderLine> leaderLineList; // 排行榜内容的list
     [SerializeField] private float timeInSeconds; // 剩余时间
 #pragma warning restore 649
 
@@ -36,6 +37,7 @@ public class QuizManager : MonoBehaviour
     public List<QuizDataScriptable> QuizData => quizDataList;
 
     public List<GameMode> ModeData => modeDataList;
+    // public List<LeaderLine> LeaderData => leaderLineList;
 
     // 相当于给private变量设置了修改接口
 

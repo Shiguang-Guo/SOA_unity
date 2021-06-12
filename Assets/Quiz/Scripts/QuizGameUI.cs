@@ -12,10 +12,12 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [SerializeField] private QuizManager quizManager; //ref to the QuizManager script
     [SerializeField] private CategoryBtnScript categoryBtnPrefab;
     [SerializeField] private GameModeBtnScript modeBtnPrefab;
+    [SerializeField] private LeaderLineScript leaderLinePrefab;
     [SerializeField] private GameObject scrollHolder, modelcontent;
+    [SerializeField] private GameObject leaderboardcontent;
     [SerializeField] private Text scoreText, timerText;
     [SerializeField] private List<Image> lifeImageList;
-    [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect, knowledgebase;
+    [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect, knowledgebase, leaderboard;
     [SerializeField] private Button retbtn, searchbtn;
     [SerializeField] private Text ansText;
     [SerializeField] private Color correctCol, wrongCol, normalCol; //color of buttons
@@ -26,6 +28,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [SerializeField] private List<Button> options; //options button reference
     [SerializeField] private InputField user_question;
     [SerializeField] private Dropdown lang_model;
+    [SerializeField] private List<LeaderLine> LeaderBoardData;
 
 #pragma warning restore 649
 
@@ -48,6 +51,17 @@ public class QuizGameUI : MonoBehaviour // 主界面
     private void Start()
     {
         CreateGameModeBtns();
+        FetchLeaderBoardData();
+        CreateLeaderBoardLines();
+    }
+
+    private void CreateLeaderBoardLines()
+    {
+        foreach(var line in LeaderBoardData)
+        {
+            LeaderLineScript leaderline = Instantiate(leaderLinePrefab, leaderboardcontent.transform);
+            leaderline.SetLine(line.UserName, line.ModeName, line.Score);
+        }
     }
 
     private void CreateGameModeBtns()
@@ -60,6 +74,23 @@ public class QuizGameUI : MonoBehaviour // 主界面
         }
     }
 
+    private void FetchLeaderBoardData()
+    {
+        LeaderBoardData = new List<LeaderLine>();
+        LeaderLine head = new LeaderLine("用户名", "模式", "得分");
+        LeaderLine a = new LeaderLine("gsg", "normal", "100");
+        LeaderBoardData.Add(head);
+        LeaderBoardData.Add(a);
+    }
+
+    // private void CreateLeaderBoardLines()
+    // {
+    //     foreach (var entry in quizManager.LeaderData)
+    //     {
+    //         LeaderLineScript leaderline = Instantiate(leaderLinePrefab, leaderboardcontent.transform);
+    //         leaderline.SetLine(entry.UserName, entry.ModeName, entry.score);
+    //     }
+    // }
     private void StartLocalGame()
     {
         //add the listner to all the buttons
@@ -231,6 +262,12 @@ public class QuizGameUI : MonoBehaviour // 主界面
             knowledgebase.SetActive(true);
             retbtn.onClick.AddListener(() => Ret2main());
             searchbtn.onClick.AddListener((() => Search()));
+        }
+        else if (modename == "LeaderBoard")
+        {
+            Debug.Log("ldbd");
+            modelSelect.SetActive(false);
+            leaderboard.SetActive(true);
         }
     }
 
