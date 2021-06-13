@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices;
+
 
 public class QuizManager : MonoBehaviour
 {
@@ -28,6 +32,7 @@ public class QuizManager : MonoBehaviour
     private int gameScore;
     private int lifesRemaining;
     private float currentTime;
+    private string username;
     private QuizDataScriptable dataScriptable;
 
     private GameStatus gameStatus = GameStatus.NEXT;
@@ -40,6 +45,9 @@ public class QuizManager : MonoBehaviour
     // public List<LeaderLine> LeaderData => leaderLineList;
 
     // 相当于给private变量设置了修改接口
+
+    [DllImport("__Internal")]
+    private static extern string submitRanking(string user, string mode, string score);
 
     public void StartGame(int categoryIndex, string category)
     {
@@ -153,6 +161,7 @@ public class QuizManager : MonoBehaviour
 
         //Save the score
         PlayerPrefs.SetInt(currentCategory, correctAnswerCount); //save the score for this category
+        // string resp = submitRanking(username, currentCategory, gameScore.ToString());
     }
 }
 

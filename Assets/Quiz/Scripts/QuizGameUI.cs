@@ -83,24 +83,19 @@ public class QuizGameUI : MonoBehaviour // 主界面
         // string data = getLeaderBoard();
         // string[] data_list = data.Split('\n');
         // foreach (var line in data_list) {
-        //     string[] line_list = line.Split(' ');
+        //         if (line == "")break;
+        //         string[] line_list = line.Split(' ');
         //     LeaderLine newline = new LeaderLine(line_list[0], line_list[1], line_list[2]);
         //     LeaderBoardData.Add(newline);
+        //         Debug.Log(line_list[0]);
+        //         Debug.Log(line_list[1]);
+        //         Debug.Log(line_list[2]);
         // }
         LeaderLine head = new LeaderLine("zsj", "history", "10");
         LeaderLine a = new LeaderLine("gsg", "geography", "100");
         LeaderBoardData.Add(head);
         LeaderBoardData.Add(a);
     }
-
-    // private void CreateLeaderBoardLines()
-    // {
-    //     foreach (var entry in quizManager.LeaderData)
-    //     {
-    //         LeaderLineScript leaderline = Instantiate(leaderLinePrefab, leaderboardcontent.transform);
-    //         leaderline.SetLine(entry.UserName, entry.ModeName, entry.score);
-    //     }
-    // }
     private void StartLocalGame()
     {
         //add the listner to all the buttons
@@ -109,7 +104,6 @@ public class QuizGameUI : MonoBehaviour // 主界面
             Button localBtn = options[i];
             localBtn.onClick.AddListener(() => OnClick(localBtn));
         }
-
         CreateCategoryButtons();
     }
 
