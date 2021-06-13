@@ -46,9 +46,15 @@ public class QuizManager : MonoBehaviour
 
     // 相当于给private变量设置了修改接口
 
-    [DllImport("__Internal")]
-    private static extern string submitRanking(string user, string mode, string score);
+    public string getScore()
+    {
+        return gameScore.ToString();
+    }
 
+    public string getMode()
+    {
+        return currentCategory;
+    }
     public void StartGame(int categoryIndex, string category)
     {
         currentCategory = category; // 设置游戏类型

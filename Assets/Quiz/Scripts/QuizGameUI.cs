@@ -27,6 +27,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [SerializeField] private Text questionInfoText; //text to show question
     [SerializeField] private List<Button> options; //options button reference
     [SerializeField] private InputField user_question;
+    [SerializeField] private InputField submit_input;
     [SerializeField] private Dropdown lang_model;
     [SerializeField] private List<LeaderLine> LeaderBoardData;
 
@@ -49,6 +50,9 @@ public class QuizGameUI : MonoBehaviour // 主界面
 
     [DllImport("__Internal")]
     private static extern string getLeaderBoard();
+
+    [DllImport("__Internal")]
+    private static extern void submitRanking(string user, string mode, string score);
 
 
     private void Start()
@@ -329,6 +333,12 @@ public class QuizGameUI : MonoBehaviour // 主界面
 
     public void RestryButton()
     {
+        string score = quizManager.getScore();
+        string mode = quizManager.getMode();
+        string user = submit_input.text;
+        submitRanking(user, mode, score);
+        FetchLeaderBoardData();
+        CreateLeaderBoardLines();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
