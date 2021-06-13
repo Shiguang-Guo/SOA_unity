@@ -18,7 +18,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [SerializeField] private Text scoreText, timerText;
     [SerializeField] private List<Image> lifeImageList;
     [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect, knowledgebase, leaderboard;
-    [SerializeField] private Button retbtn, searchbtn;
+    [SerializeField] private Button retbtn, searchbtn, leaderboardbtn, localbtn;
     [SerializeField] private Text ansText;
     [SerializeField] private Color correctCol, wrongCol, normalCol; //color of buttons
     [SerializeField] private Image questionImg; //image component to show image
@@ -46,6 +46,9 @@ public class QuizGameUI : MonoBehaviour // 主界面
 
     [DllImport("__Internal")]
     private static extern string getRequest(string ques, string model);
+
+    [DllImport("__Internal")]
+    private static extern string getLeaderBoard();
 
 
     private void Start()
@@ -77,8 +80,15 @@ public class QuizGameUI : MonoBehaviour // 主界面
     private void FetchLeaderBoardData()
     {
         LeaderBoardData = new List<LeaderLine>();
-        LeaderLine head = new LeaderLine("用户名", "模式", "得分");
-        LeaderLine a = new LeaderLine("gsg", "normal", "100");
+        // string data = getLeaderBoard();
+        // string[] data_list = data.Split('\n');
+        // foreach (var line in data_list) {
+        //     string[] line_list = line.Split(' ');
+        //     LeaderLine newline = new LeaderLine(line_list[0], line_list[1], line_list[2]);
+        //     LeaderBoardData.Add(newline);
+        // }
+        LeaderLine head = new LeaderLine("zsj", "history", "10");
+        LeaderLine a = new LeaderLine("gsg", "geography", "100");
         LeaderBoardData.Add(head);
         LeaderBoardData.Add(a);
     }
@@ -255,6 +265,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
             StartLocalGame();
             modelSelect.SetActive(false);
             mainMenu.SetActive(true);
+            localbtn.onClick.AddListener(() => LocalRet2Main());
         }
         else if (modename == "Knowledge Base")
         {
@@ -268,6 +279,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
             Debug.Log("ldbd");
             modelSelect.SetActive(false);
             leaderboard.SetActive(true);
+            leaderboardbtn.onClick.AddListener(() => LeaderBoardRet2main());
         }
     }
 
@@ -288,6 +300,17 @@ public class QuizGameUI : MonoBehaviour // 主界面
     {
         modelSelect.SetActive(true);
         knowledgebase.SetActive(false);
+    }
+
+    public void LeaderBoardRet2main()
+    {
+        leaderboard.SetActive(false);
+        modelSelect.SetActive(true);
+    }
+    public void LocalRet2Main()
+    {
+        modelSelect.SetActive(true);
+        mainMenu.SetActive(false);
     }
 
     //Method called by Category Button
