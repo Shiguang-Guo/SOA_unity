@@ -46,6 +46,8 @@ public class QuizManager : MonoBehaviour
 
     // 相当于给private变量设置了修改接口
 
+    
+
     public string getScore()
     {
         return gameScore.ToString();

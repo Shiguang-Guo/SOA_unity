@@ -84,17 +84,18 @@ public class QuizGameUI : MonoBehaviour // 主界面
     private void FetchLeaderBoardData()
     {
         LeaderBoardData = new List<LeaderLine>();
-        // string data = getLeaderBoard();
-        // string[] data_list = data.Split('\n');
-        // foreach (var line in data_list) {
-        //         if (line == "")break;
-        //         string[] line_list = line.Split(' ');
-        //     LeaderLine newline = new LeaderLine(line_list[0], line_list[1], line_list[2]);
-        //     LeaderBoardData.Add(newline);
-        //         Debug.Log(line_list[0]);
-        //         Debug.Log(line_list[1]);
-        //         Debug.Log(line_list[2]);
-        // }
+        string data = getLeaderBoard();
+        string[] data_list = data.Split('\n');
+        //Debug.Log("Fetching Leaderboard");
+        foreach (var line in data_list) {
+            if (line == "") break;
+            string[] line_list = line.Split('\t');
+            LeaderLine newline = new LeaderLine(line_list[0], line_list[1], line_list[2]);
+            LeaderBoardData.Add(newline);
+            // Debug.Log(line_list[0]);
+            // Debug.Log(line_list[1]);
+            // Debug.Log(line_list[2]);
+        }
         LeaderLine head = new LeaderLine("zsj", "history", "10");
         LeaderLine a = new LeaderLine("gsg", "geography", "100");
         LeaderBoardData.Add(head);
@@ -336,6 +337,9 @@ public class QuizGameUI : MonoBehaviour // 主界面
         string score = quizManager.getScore();
         string mode = quizManager.getMode();
         string user = submit_input.text;
+        Debug.Log(score);
+        Debug.Log(mode);
+        Debug.Log(user);
         submitRanking(user, mode, score);
         FetchLeaderBoardData();
         CreateLeaderBoardLines();
