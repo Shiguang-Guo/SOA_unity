@@ -295,8 +295,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 250, y: 100}
-  m_Spacing: {x: 70, y: 0}
+  m_CellSize: {x: 200, y: 100}
+  m_Spacing: {x: 50, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!222 &-8484329120864624581
@@ -319,3 +319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9326526bf64a1e8459ab6486743730c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userText: {fileID: 0}
+  modeText: {fileID: 0}
+  scoreText: {fileID: 0}

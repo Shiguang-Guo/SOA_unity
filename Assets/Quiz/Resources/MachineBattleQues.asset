@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3226ffd470724d0f91e05ed3f9bf8707, type: 3}
+  m_Name: MachineBattleQues
+  m_EditorClassIdentifier: 
+  Quess:
+  - question: Amsterdam is the capital of [] .
+    correct_ans: Netherlands
+    bert_ans: Netherlands
+  - question: Baku is the capital of []
+    correct_ans: Azerbaijan
+    bert_ans: Azerbaijan
+  - question: "\u5F00\u7F57\u662F[]\u7684\u9996\u90FD"
+    correct_ans: "\u57C3\u53CA"
+    bert_ans: "\u57C3\u53CA"
+  - question: "\u54E5\u672C\u54C8\u6839\u662F[]\u7684\u9996\u90FD"
+    correct_ans: "\u4E39\u9EA6"
+    bert_ans: "\u4E39\u9EA6"
+  - question: Buenos Aires is the capital of []
+    correct_ans: Argentina
+    bert_ans: Argentina
+  - question: Florentine is the capital of []
+    correct_ans: Tuscan
+    bert_ans: Tuscan
+  - question: "\u582A\u57F9\u62C9\u662F[]\u7684\u9996\u90FD"
+    correct_ans: "\u6FB3\u5927\u5229\u4E9A"
+    bert_ans: "\u6FB3\u5927\u5229\u4E9A"
+  - question: "\u5DF4\u683C\u8FBE\u662F[]\u7684\u9996\u90FD"
+    correct_ans: "\u4F0A\u62C9\u514B"
+    bert_ans: "\u4F0A\u62C9\u514B"
+  - question: Edinburgh is the capital of []
+    correct_ans: Scotland
+    bert_ans: Scotland
+  - question: "\u67CF\u6797\u662F[]\u7684\u9996\u90FD"
+    correct_ans: "\u5FB7\u56FD"
+    bert_ans: "\u5FB7\u56FD"

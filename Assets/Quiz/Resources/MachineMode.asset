@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: againstMachine
   modeChineseName: "\u4EBA\u673A\u5BF9\u6218"
-  isopen: 0
+  isopen: 1
