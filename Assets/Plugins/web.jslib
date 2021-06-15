@@ -12,6 +12,7 @@
             type: "POST",
             url: "http://166.111.7.106:17394/predict",
             async: false,
+            timeout : 10000,
             data: JSON.stringify({
                 "model": model_,
                 "question": ques_,
@@ -23,6 +24,7 @@
             result = res.answer;
         }).error(function (xhr, status) {
             console.log(xhr, status);
+            result="Can't connect to server，please try again..."
         });
         var returnStr = result;
         var bufferSize = lengthBytesUTF8(returnStr) + 1;
