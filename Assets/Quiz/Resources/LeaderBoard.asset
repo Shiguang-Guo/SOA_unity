@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeName: LeaderBoard
   modeChineseName: "\u6392\u884C\u699C"
-  isopen: 0
+  isopen: 1

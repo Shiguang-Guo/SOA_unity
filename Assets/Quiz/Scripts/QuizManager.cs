@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Runtime.InteropServices;
+
 
 public class QuizManager : MonoBehaviour
 {
@@ -12,6 +16,7 @@ public class QuizManager : MonoBehaviour
     //ref to the scriptableobject file
     [SerializeField] private List<QuizDataScriptable> quizDataList; // 各种类型问题的集合的一个list
     [SerializeField] private List<GameMode> modeDataList; // 游戏模式的list
+    // [SerializeField] private List<LeaderLine> leaderLineList; // 排行榜内容的list
     [SerializeField] private float timeInSeconds; // 剩余时间
 #pragma warning restore 649
 
@@ -27,6 +32,7 @@ public class QuizManager : MonoBehaviour
     private int gameScore;
     private int lifesRemaining;
     private float currentTime;
+    private string username;
     private QuizDataScriptable dataScriptable;
 
     private GameStatus gameStatus = GameStatus.NEXT;
@@ -36,9 +42,21 @@ public class QuizManager : MonoBehaviour
     public List<QuizDataScriptable> QuizData => quizDataList;
 
     public List<GameMode> ModeData => modeDataList;
+    // public List<LeaderLine> LeaderData => leaderLineList;
 
     // 相当于给private变量设置了修改接口
 
+    
+
+    public string getScore()
+    {
+        return gameScore.ToString();
+    }
+
+    public string getMode()
+    {
+        return currentCategory;
+    }
     public void StartGame(int categoryIndex, string category)
     {
         currentCategory = category; // 设置游戏类型
@@ -151,6 +169,7 @@ public class QuizManager : MonoBehaviour
 
         //Save the score
         PlayerPrefs.SetInt(currentCategory, correctAnswerCount); //save the score for this category
+        // string resp = submitRanking(username, currentCategory, gameScore.ToString());
     }
 }
 

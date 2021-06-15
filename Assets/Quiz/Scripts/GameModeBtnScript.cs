@@ -15,5 +15,4 @@ public class GameModeBtnScript : MonoBehaviour
     {
         modeText.text = title;
     }
-
 }

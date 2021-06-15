@@ -13,11 +13,13 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [SerializeField] private QuizManager quizManager; //ref to the QuizManager script
     [SerializeField] private CategoryBtnScript categoryBtnPrefab;
     [SerializeField] private GameModeBtnScript modeBtnPrefab;
+    [SerializeField] private LeaderLineScript leaderLinePrefab;
     [SerializeField] private GameObject scrollHolder, modelcontent;
+    [SerializeField] private GameObject leaderboardcontent;
     [SerializeField] private Text scoreText, timerText;
     [SerializeField] private List<Image> lifeImageList;
-    [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect, knowledgebase, againstmachine;
-    [SerializeField] private Button retbtn, searchbtn, machine_submit_btn, machine_next_btn, machine_ret_btn;
+    [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect, knowledgebase, againstmachine, leaderboard;
+    [SerializeField] private Button retbtn, searchbtn, machine_submit_btn, machine_next_btn, machine_ret_btn, leaderboardbtn, localbtn;
     [SerializeField] private Text ansText, machineQuesText;
     [SerializeField] private Color correctCol, wrongCol, normalCol; //color of buttons
     [SerializeField] private Image questionImg; //image component to show image
@@ -28,6 +30,8 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [SerializeField] private InputField user_question, machine_user_ans, machine_bert_ans;
     [SerializeField] private Dropdown lang_model;
     [SerializeField] private MachineBattleQues machineBattleQues;
+    [SerializeField] private InputField submit_input;
+    [SerializeField] private List<LeaderLine> LeaderBoardData;
 
 
 #pragma warning restore 649
@@ -49,10 +53,27 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [DllImport("__Internal")]
     private static extern string getRequest(string ques, string model);
 
+    [DllImport("__Internal")]
+    private static extern string getLeaderBoard();
+
+    [DllImport("__Internal")]
+    private static extern void submitRanking(string user, string mode, string score);
+
 
     private void Start()
     {
         CreateGameModeBtns();
+        FetchLeaderBoardData();
+        CreateLeaderBoardLines();
+    }
+
+    private void CreateLeaderBoardLines()
+    {
+        foreach(var line in LeaderBoardData)
+        {
+            LeaderLineScript leaderline = Instantiate(leaderLinePrefab, leaderboardcontent.transform);
+            leaderline.SetLine(line.UserName, line.ModeName, line.Score);
+        }
     }
 
     private void CreateGameModeBtns()
@@ -65,6 +86,26 @@ public class QuizGameUI : MonoBehaviour // 主界面
         }
     }
 
+    private void FetchLeaderBoardData()
+    {
+        LeaderBoardData = new List<LeaderLine>();
+        string data = getLeaderBoard();
+        string[] data_list = data.Split('\n');
+        //Debug.Log("Fetching Leaderboard");
+        foreach (var line in data_list) {
+            if (line == "") break;
+            string[] line_list = line.Split('\t');
+            LeaderLine newline = new LeaderLine(line_list[0], line_list[1], line_list[2]);
+            LeaderBoardData.Add(newline);
+            // Debug.Log(line_list[0]);
+            // Debug.Log(line_list[1]);
+            // Debug.Log(line_list[2]);
+        }
+        LeaderLine head = new LeaderLine("zsj", "history", "10");
+        LeaderLine a = new LeaderLine("gsg", "geography", "100");
+        LeaderBoardData.Add(head);
+        LeaderBoardData.Add(a);
+    }
     private void StartLocalGame()
     {
         //add the listner to all the buttons
@@ -73,7 +114,6 @@ public class QuizGameUI : MonoBehaviour // 主界面
             Button localBtn = options[i];
             localBtn.onClick.AddListener(() => OnClick(localBtn));
         }
-
         CreateCategoryButtons();
     }
 
@@ -229,6 +269,7 @@ public class QuizGameUI : MonoBehaviour // 主界面
             StartLocalGame();
             modelSelect.SetActive(false);
             mainMenu.SetActive(true);
+            localbtn.onClick.AddListener(() => LocalRet2Main());
         }
         else if (modename == "Knowledge Base")
         {
@@ -242,6 +283,14 @@ public class QuizGameUI : MonoBehaviour // 主界面
             StartMachineBattle();
             modelSelect.SetActive(false);
             againstmachine.SetActive(true);
+        }
+
+        else if (modename == "LeaderBoard")
+        {
+            Debug.Log("ldbd");
+            modelSelect.SetActive(false);
+            leaderboard.SetActive(true);
+            leaderboardbtn.onClick.AddListener(() => LeaderBoardRet2main());
         }
     }
 
@@ -313,6 +362,17 @@ public class QuizGameUI : MonoBehaviour // 主界面
         knowledgebase.SetActive(false);
     }
 
+    public void LeaderBoardRet2main()
+    {
+        leaderboard.SetActive(false);
+        modelSelect.SetActive(true);
+    }
+    public void LocalRet2Main()
+    {
+        modelSelect.SetActive(true);
+        mainMenu.SetActive(false);
+    }
+
     //Method called by Category Button
     private void CategoryBtn(int index, string category)
     {
@@ -335,6 +395,15 @@ public class QuizGameUI : MonoBehaviour // 主界面
 
     public void RestryButton()
     {
+        string score = quizManager.getScore();
+        string mode = quizManager.getMode();
+        string user = submit_input.text;
+        // Debug.Log(score);
+        // Debug.Log(mode);
+        // Debug.Log(user);
+        submitRanking(user, mode, score);
+        FetchLeaderBoardData();
+        CreateLeaderBoardLines();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
