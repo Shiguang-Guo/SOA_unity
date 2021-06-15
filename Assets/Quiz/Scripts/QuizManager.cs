@@ -168,6 +168,14 @@ public class Question
 }
 
 [System.Serializable]
+public class MachineQues
+{
+    public string question;
+    public string correct_ans;
+    public string bert_ans;
+}
+
+[System.Serializable]
 public enum QuestionType
 {
     TEXT,

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Runtime.InteropServices;
+using Random = System.Random;
 
 public class QuizGameUI : MonoBehaviour // 主界面
 {
@@ -15,17 +16,19 @@ public class QuizGameUI : MonoBehaviour // 主界面
     [SerializeField] private GameObject scrollHolder, modelcontent;
     [SerializeField] private Text scoreText, timerText;
     [SerializeField] private List<Image> lifeImageList;
-    [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect, knowledgebase;
-    [SerializeField] private Button retbtn, searchbtn;
-    [SerializeField] private Text ansText;
+    [SerializeField] private GameObject gameOverPanel, mainMenu, gamePanel, modelSelect, knowledgebase, againstmachine;
+    [SerializeField] private Button retbtn, searchbtn, machine_submit_btn, machine_next_btn, machine_ret_btn;
+    [SerializeField] private Text ansText, machineQuesText;
     [SerializeField] private Color correctCol, wrongCol, normalCol; //color of buttons
     [SerializeField] private Image questionImg; //image component to show image
     [SerializeField] private UnityEngine.Video.VideoPlayer questionVideo; //to show video
     [SerializeField] private AudioSource questionAudio; //audio source for audio clip
     [SerializeField] private Text questionInfoText; //text to show question
     [SerializeField] private List<Button> options; //options button reference
-    [SerializeField] private InputField user_question;
+    [SerializeField] private InputField user_question, machine_user_ans, machine_bert_ans;
     [SerializeField] private Dropdown lang_model;
+    [SerializeField] private MachineBattleQues machineBattleQues;
+
 
 #pragma warning restore 649
 
@@ -36,6 +39,8 @@ public class QuizGameUI : MonoBehaviour // 主界面
     public Text TimerText => timerText; //getter
     public Text ScoreText => scoreText; //getter
     public GameObject GameOverPanel => gameOverPanel; //getter
+
+    public MachineQues current_ques;
 
 
     [DllImport("__Internal")]
@@ -232,17 +237,72 @@ public class QuizGameUI : MonoBehaviour // 主界面
             retbtn.onClick.AddListener(() => Ret2main());
             searchbtn.onClick.AddListener((() => Search()));
         }
+        else if (modename == "againstMachine")
+        {
+            StartMachineBattle();
+            modelSelect.SetActive(false);
+            againstmachine.SetActive(true);
+        }
     }
+
+    public void StartMachineBattle()
+    {
+        NextQues();
+        machine_submit_btn.onClick.AddListener((() => SubmitAns()));
+        machine_next_btn.onClick.AddListener((() => NextQues()));
+        machine_ret_btn.onClick.AddListener((() => MachineRet2main()));
+    }
+
+    public void MachineRet2main()
+    {
+        modelSelect.SetActive(true);
+        againstmachine.SetActive(false);
+    }
+
+    public MachineQues Getques()
+    {
+        Random rd = new Random();
+        int index = rd.Next(machineBattleQues.Quess.Count);
+        return machineBattleQues.Quess[index];
+    }
+
+    public void NextQues()
+    {
+        current_ques = Getques();
+        machineQuesText.text = current_ques.question;
+        machine_user_ans.text = "";
+        machine_bert_ans.text = "Emmm";
+        machine_user_ans.image.color = Color.white;
+        machine_bert_ans.image.color = Color.white;
+    }
+
+    public void SubmitAns()
+    {
+        if (machine_user_ans.text == current_ques.correct_ans)
+        {
+            machine_user_ans.image.color = Color.green;
+        }
+        else
+        {
+            machine_user_ans.image.color = Color.red;
+        }
+
+        machine_bert_ans.text = current_ques.bert_ans;
+        if (machine_bert_ans.text == current_ques.correct_ans)
+        {
+            machine_bert_ans.image.color = Color.green;
+        }
+        else
+        {
+            machine_bert_ans.image.color = Color.red;
+        }
+    }
+
 
     public void Search()
     {
-        Debug.Log(user_question.text);
-        Debug.Log(lang_model.options);
-        Debug.Log(lang_model.value);
         string ques = user_question.text;
         string model = lang_model.options[lang_model.value].text;
-        Debug.Log(ques);
-        Debug.Log(model);
         string ans = getRequest(ques, model);
         ansText.text = ans;
     }
