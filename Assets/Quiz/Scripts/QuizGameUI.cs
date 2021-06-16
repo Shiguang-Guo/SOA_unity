@@ -101,10 +101,10 @@ public class QuizGameUI : MonoBehaviour // 主界面
             // Debug.Log(line_list[1]);
             // Debug.Log(line_list[2]);
         }
-        LeaderLine head = new LeaderLine("zsj", "history", "10");
-        LeaderLine a = new LeaderLine("gsg", "geography", "100");
-        LeaderBoardData.Add(head);
-        LeaderBoardData.Add(a);
+        // LeaderLine head = new LeaderLine("zsj", "history", "10");
+        // LeaderLine a = new LeaderLine("gsg", "geography", "100");
+        // LeaderBoardData.Add(head);
+        // LeaderBoardData.Add(a);
     }
     private void StartLocalGame()
     {
